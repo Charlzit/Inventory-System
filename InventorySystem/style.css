@@ -1,0 +1,207 @@
+/* style.css */
+
+body {
+    padding: 20px;
+    background-color: #222;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
+.table th, .table td {
+  color: white;
+}
+
+
+.container {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+h1, h2 {
+    color: #00ff80;
+    text-align: center;
+}
+
+.navbar {
+    background-color: #111;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+form {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+form label {
+    color: #00ff80;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="file"] {
+    background-color: #555;
+    border: none;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+form button[type="submit"] {
+    background-color: #00ff80;
+    border: none;
+    color: #222;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 50%;
+}
+
+
+
+.card {
+    background-color: #555;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #00ff80;
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.card-body img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.form-group.row {
+    margin-bottom: 10px;
+}
+
+.form-control {
+    background-color: #666;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #00ff80;
+    border: none;
+    color: #222;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 5px;
+    outline: none; /* Add this line to remove the border outline when the button is focused */
+}
+
+.btn-danger {
+    background-color: #00ff80;
+    border: none;
+    color: #222;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 5px;
+    outline: none; /* Add this line to remove the border outline when the button is focused */
+}
+
+/* Additional futuristic styles */
+body {
+    background-color: #222;
+    color: #fff;
+}
+
+.container {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 128, 0.3);
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.navbar {
+    background-color: #111;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 255, 128, 0.3);
+}
+
+form {
+    background-color: #444;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 128, 0.3);
+}
+
+form label {
+    font-size: 18px;
+}
+
+form button[type="submit"] {
+    background-color: #00ff80;
+    border: none;
+    color: #222;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    margin-left: 30%;
+}
+
+.card {
+    background-color: #555;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: 1px solid #00ff80;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 255, 128, 0.3);
+}
+
+.card-body img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.btn-primary,
+.btn-danger {
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 5px;
+}
+
+/* Additional futuristic styles end */
