@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <title>Point of Sale</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            padding: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1 class="mb-4">Point of Sale</h1>
-
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                    <a class="nav-link" href="home.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="add_product.php">Add Product</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="products.php">Products</a>
+                </li>
+            </ul>
+        </nav>
         <?php
         $db_username = 'root';
         $db_password = '';
@@ -51,20 +60,18 @@
                         $updateStmt->bindParam(':id', $product_id);
                         $updateStmt->execute();
 
-                        if ($product['quantity'] >= $quantity) {
-                            // Calculate total and deduct quantity from inventory
-                            $total = $price * $quantity;
-                            $newQuantity = $product['quantity'] - $quantity;
-                        
-                            // Update the quantity in the database
-                            // ...
-                        
-                            // Redirect to the receipt page with data
-                            $redirectUrl = "receipt.php?product_id=$product_id&quantity=$quantity&total=$total";
-                            header("Location: $redirectUrl");
-                            exit();
-                        }
-                        
+                        // Record the sale in the sales table
+                        $recordQuery = "INSERT INTO sales (product_id, quantity, price, sale_date) VALUES (:product_id, :quantity, :price, CURRENT_TIMESTAMP)";
+                        $recordStmt = $conn->prepare($recordQuery);
+                        $recordStmt->bindParam(':product_id', $product_id);
+                        $recordStmt->bindParam(':quantity', $quantity);
+                        $recordStmt->bindParam(':price', $price);
+                        $recordStmt->execute();
+
+                        // Redirect to the receipt page with data
+                        $redirectUrl = "receipt.php?product_id=$product_id&quantity=$quantity&total=$total";
+                        header("Location: $redirectUrl");
+                        exit();
                     } else {
                         echo "<div class='alert alert-danger'>";
                         echo "Insufficient quantity available!";
@@ -78,16 +85,16 @@
             }
 
             $query = "SELECT * FROM products";
-            if(isset($_GET['search'])) {
+            if (isset($_GET['search'])) {
                 $searchTerm = $_GET['search'];
                 $query .= " WHERE name LIKE '%$searchTerm%'";
             }
-            
+
             $result = $conn->query($query);
 
             if ($result->rowCount() > 0) {
                 echo "<h2>Available Products</h2>";
- 
+
                 echo "<form action='' method='GET' class='mb-3'>";
                 echo "<div class='form-group'>";
                 echo "<label for='search'>Search by Name:</label>";
@@ -95,7 +102,7 @@
                 echo "</div>";
                 echo "<button type='submit' class='btn btn-primary'>Search</button>";
                 echo "</form>";
-                
+
                 echo "<table class='table'>";
                 echo "<thead>";
                 echo "<tr>";
@@ -106,7 +113,7 @@
                 echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";
-                
+
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
                     echo "<td>" . $row['id'] . "</td>";
@@ -115,7 +122,7 @@
                     echo "<td>" . $row['price'] . "</td>";
                     echo "</tr>";
                 }
-                
+
                 echo "</tbody>";
                 echo "</table>";
             } else {
@@ -140,9 +147,9 @@
 
             <button type="submit" class="btn btn-primary" name="print">Sell</button>
         </form>
-        
+
         <br>
-        <a href="home.php" class="btn btn-secondary">Back to Inventory System</a>
+
     </div>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
